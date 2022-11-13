@@ -30,7 +30,7 @@ echo "Setting up config files and permissions..."
 
 chown -R taytek:taytek DotFiles
 
-su taytek -c "cp DotFiles/config.fish /home/taytek/.config/fish/; cp DotFiles/tmux.conf /home/taytek/.tmux.conf; chsh -s `which fish`"
+su taytek -c "cp DotFiles/config.fish /home/taytek/.config/fish/; cp DotFiles/tmux.conf /home/taytek/.tmux.conf; rm ~/.vim -fr && cp DotFiles/vim ~/.vim -r ; chsh -s `which fish`"
 
 echo "Cleaning up..."
 
