@@ -144,27 +144,27 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+		# These bindings trigger as soon as you enter the resize mode
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+		# Pressing left will shrink the window’s width.
+		# Pressing right will grow the window’s width.
+		# Pressing up will shrink the window’s height.
+		# Pressing down will grow the window’s height.
+		bindsym j resize shrink width 10 px or 10 ppt
+		bindsym k resize grow height 10 px or 10 ppt
+		bindsym l resize shrink height 10 px or 10 ppt
+		bindsym semicolon resize grow width 10 px or 10 ppt
 
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+		# same bindings, but for the arrow keys
+		bindsym Left resize shrink width 10 px or 10 ppt
+		bindsym Down resize grow height 10 px or 10 ppt
+		bindsym Up resize shrink height 10 px or 10 ppt
+		bindsym Right resize grow width 10 px or 10 ppt
 
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+		# back to normal: Enter or Escape or $mod+r
+		bindsym Return mode "default"
+		bindsym Escape mode "default"
+		bindsym $mod+r mode "default"
 }
 
 bindsym $mod+control+r mode "resize"
@@ -177,26 +177,46 @@ exec xrandr --output DisplayPort-2 --primary
 bar {
 	output DisplayPort-0
 	tray_output none
-        status_command i3blocks -c ~/.config/i3/bar4
-}
+	status_command i3blocks -c ~/.config/i3/bar4
+	colors {
+		background #282a36
+		focused_workspace #bd93f9 #44475a #bd93f9
+		inactive_workspace #282a36 #282a36 #6272a4
+		active_workspace #282a36 #282a36 #8be9fd
+	}}
 
 bar {
 	output DisplayPort-1
 	tray_output none
-        status_command i3blocks -c ~/.config/i3/bar2
-}
+	status_command i3blocks -c ~/.config/i3/bar2
+	colors {
+		background #282a36
+		focused_workspace #bd93f9 #44475a #bd93f9
+		inactive_workspace #282a36 #282a36 #6272a4
+		active_workspace #282a36 #282a36 #8be9fd
+	}}
 
 bar {
 	output HDMI-A-0
 	tray_output none
-        status_command i3blocks -c ~/.config/i3/bar3
-}
+	status_command i3blocks -c ~/.config/i3/bar3
+	colors {
+		background #282a36
+		focused_workspace #bd93f9 #44475a #bd93f9
+		inactive_workspace #282a36 #282a36 #6272a4
+		active_workspace #282a36 #282a36 #8be9fd
+	}}
 
 bar {
 	output DisplayPort-2
 	tray_output DisplayPort-2
-        status_command i3blocks -c ~/.config/i3/bar1
-}
+	status_command i3blocks -c ~/.config/i3/bar1
+	colors {
+		background #282a36
+		focused_workspace #bd93f9 #44475a #bd93f9
+		inactive_workspace #282a36 #282a36 #6272a4
+		active_workspace #282a36 #282a36 #8be9fd
+	}}
 
 #custom shit
 
@@ -225,3 +245,5 @@ exec --no-startup-id "feh --bg-scale ~/Pictures/back.jpg"
 for_window [class="steam_app_1182480" title="Origin"] floating enable
 
 workspace 1 output DisplayPort-2
+
+for_window [title="\[floating\]$"] floating enable

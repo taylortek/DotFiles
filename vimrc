@@ -1,38 +1,50 @@
 :set mouse=a
+syntax on
+
+if &term =~ '^screen'
+    " tmux will send xterm-style keys when its xterm-keys option is on
+    execute "set <xRight>=\e[1;*C"
+    execute "set <xLeft>=\e[1;*D"
+endif
+
+:set smartindent
+
+:filetype indent on
+:set tabstop=4
+:set shiftwidth=4
+
+set shell=/bin/bash
+
+:set background=dark
+
+:set backspace=indent,eol,start
+
+set encoding=utf-8
+
+noremap x "_x
+noremap X "_x
+noremap <Del> "_x
+
+" vim-plug
 
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'gmarik/Vundle.vim'
 
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'OmniSharp/omnisharp-vim'
+call plug#begin()
 
-"Plugin 'YouCompleteMe/youcompleteme.vim'
-Plugin 'puremourning/vimspector'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'preservim/nerdtree'
+Plug 'puremourning/vimspector'
 
-call vundle#end()
-filetype plugin indent on 
+let g:coc_node_path = substitute(system('which node'), '\n', '', '')
 
-inoremap <expr> <Tab> pumvisible() ? '<C-n>' :                                                                                                                    
-\ getline('.')[col('.')-2] =~# '[[:alnum:].-_#$]' ? '<C-x><C-o>' : '<Tab>'
+let g:airline#extensions#tabline#enabled = 1
 
-:syntax on
-"nnoremap <C-o><C-u> :OmniSharpFindUsages<CR>
-"nnoremap <C-o><C-d> :OmniSharpGotoDefinition<CR>
-"nnoremap <C-o><C-d><C-p> :OmniSharpPreviewDefinition<CR>
-"nnoremap <C-o><C-r> :!dotnet run
-let g:vimspector_enable_mappings = 'HUMAN'
+source ~/.vim/.cocrc.vim
+source ~/.vim/.nerdtree.vim
+source ~/.vim/.inspect.vim
+source ~/.vim/smartclose.vim
 
-"let g:OmniSharp_popup_options = {
-"\ 'highlight': 'Normal',
-"\ 'padding': [1],
-"\ 'border': [1]
-"\}
-
-map <S-r> :call Run()<CR>
-
-set clipboard=unnamedplus
-set background=dark
-let g:OmniSharp_start_server = 0 
+call plug#end()
