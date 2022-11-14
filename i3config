@@ -246,4 +246,7 @@ for_window [class="steam_app_1182480" title="Origin"] floating enable
 
 workspace 1 output DisplayPort-2
 
+bindsym $mod+Shift+s exec --no-startup-id "flameshot gui"
+
 for_window [title="\[floating\]$"] floating enable
+for_window [title="^flameshot$"] floating enable
