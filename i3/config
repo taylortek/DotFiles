@@ -41,7 +41,7 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 bindsym $mod+d exec --no-startup-id rofi -show run
-bindsym Super_L exec --no-startup-id rofi -show drun
+bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # There also is i3-dmenu-desktop which only displays applications shipping a
@@ -172,81 +172,65 @@ bindsym $mod+control+r mode "resize"
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
-exec xrandr --output DisplayPort-2 --primary
+exec xrandr --output eDP --primary
 
-bar {
-	output DisplayPort-0
-	tray_output none
-	status_command i3blocks -c ~/.config/i3/bar4
-	colors {
-		background #282a36
-		focused_workspace #bd93f9 #44475a #bd93f9
-		inactive_workspace #282a36 #282a36 #6272a4
-		active_workspace #282a36 #282a36 #8be9fd
-	}}
 
-bar {
-	output DisplayPort-1
-	tray_output none
-	status_command i3blocks -c ~/.config/i3/bar2
-	colors {
-		background #282a36
-		focused_workspace #bd93f9 #44475a #bd93f9
-		inactive_workspace #282a36 #282a36 #6272a4
-		active_workspace #282a36 #282a36 #8be9fd
-	}}
-
-bar {
-	output HDMI-A-0
-	tray_output none
-	status_command i3blocks -c ~/.config/i3/bar3
-	colors {
-		background #282a36
-		focused_workspace #bd93f9 #44475a #bd93f9
-		inactive_workspace #282a36 #282a36 #6272a4
-		active_workspace #282a36 #282a36 #8be9fd
-	}}
-
-bar {
-	output DisplayPort-2
-	tray_output DisplayPort-2
-	status_command i3blocks -c ~/.config/i3/bar1
-	colors {
-		background #282a36
-		focused_workspace #bd93f9 #44475a #bd93f9
-		inactive_workspace #282a36 #282a36 #6272a4
-		active_workspace #282a36 #282a36 #8be9fd
-	}}
-
-#custom shit
-
-exec "~/.screenlayout/test.sh"
+#custom stuff
 
 bindsym $mod+b border toggle 2
 
 default_border pixel 2
 hide_edge_borders both
 
-bindsym XF86AudioRaiseVolume exec "amixer set Master 2%+"
-bindsym XF86AudioLowerVolume exec "amixer set Master 2%-"
-bindsym XF86AudioPlay exec "playerctl play-pause"
-bindsym XF86AudioNext exec "playerctl next"
-bindsym XF86AudioPrev exec "playerctl previous"
-
-exec xrandr --output HDMI-A-0 --set TearFree on
-exec xrandr --output DisplayPort-1 --set TearFree on
-exec xrandr --output DisplayPort-2 --set TearFree on
-exec xrandr --output DisplayPort-0 --set TearFree on
+exec xrandr --output eDP --set TearFree on
 
 exec --no-startup-id dunst
 
-exec --no-startup-id "feh --bg-scale ~/Pictures/back.jpg"
+exec --no-startup-id "feh --bg-fill ~/Pictures/back.jpg"
 
-for_window [class="steam_app_1182480" title="Origin"] floating enable
-
-workspace 1 output DisplayPort-2
+workspace 1 output eDP
 
 bindsym $mod+Shift+s exec --no-startup-id "flameshot gui"
 
 for_window [title="\[floating\]$"] floating enable
 for_window [title="^flameshot$"] floating enable
+
+exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+exec_always --no-startup-id $HOME/.config/i3/battery_monitor.sh
+
+#bar {
+#		output eDP
+#		tray_output eDP
+#		status_command i3blocks -c ~/.config/i3/bar
+#		colors {
+#			background #282a36
+#			focused_workspace #bd93f9 #44475a #bd93f9
+#			inactive_workspace #282a36 #282a36 #6272a4
+#			active_workspace #282a36 #282a36 #8be9fd
+#		}}
+
+bindsym XF86MonBrightnessUp exec --no-startup-id "echo $((`cat /sys/class/backlight/amdgpu_bl0/brightness` + 5)) > /sys/class/backlight/amdgpu_bl0/brightness; /home/taytek/.config/i3/notif.sh brightness"
+
+bindsym XF86MonBrightnessDown exec --no-startup-id "echo $((`cat /sys/class/backlight/amdgpu_bl0/brightness` - 5)) > /sys/class/backlight/amdgpu_bl0/brightness; /home/taytek/.config/i3/notif.sh brightness"
+
+#use xev to get key names
+
+bindsym $mod+F3 exec --no-startup-id "/home/taytek/.config/i3/gamma_brightness.sh .1; /home/taytek/.config/i3/notif.sh gamma"
+
+bindsym $mod+F2 exec --no-startup-id "/home/taytek/.config/i3/gamma_brightness.sh -.1; /home/taytek/.config/i3/notif.sh gamma"
+
+exec --no-startup-id "xinput set-prop 14 326 1"
+exec --no-startup-id "xinput set-prop 14 334 0"
+
+bindsym XF86AudioRaiseVolume exec --no-startup-id "amixer set Master 2%+"
+bindsym XF86AudioLowerVolume exec --no-startup-id "amixer set Master 2%-"
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause"
+bindsym XF86AudioNext exec --no-startup-id "playerctl next"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl previous"
+
+exec_always --no-startup-id "picom -b"
+
+bindsym Super_L exec --no-startup-id "/home/taytek/.config/polybar/scripts/hideIt.sh --class Polybar --toggle"
+
+exec --no-startup-id setxkbmap -option compose:caps

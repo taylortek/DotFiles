@@ -1,0 +1,20 @@
+135 08:50:09 Chemistry
+135 09:45:09 Study Hall
+135 10:40:09 English
+135 11:35:09 Social Justice
+135 12:35:09 Lunch
+135 13:15:09 Digital Electronics
+135 14:10:09 Math
+135 15:05:09 French
+135 16:00:09 End of School
+
+24 08:50:09 Chemistry
+24 09:40:09 Study Hall
+24 10:30:09 East Collective
+24 11:10:09 English
+24 12:00:09 Social Justice
+24 12:50:09 Lunch
+24 13:30:09 Digital Electronics
+24 14:20:09 Math
+24 15:10:09 French
+24 16:00:09 End of School

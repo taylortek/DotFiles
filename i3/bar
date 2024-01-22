@@ -1,0 +1,34 @@
+# Define the custom separator in global properties for boilerplate
+align=center
+color=#999999
+separator=false
+separator_block_width=15
+
+[next bell]
+color=#ff79c6
+command=/home/taytek/.config/i3/getnextbell.sh
+interval=5
+
+[ram]
+command=free --mega | grep Mem | awk '{print $3"/"$2}'
+interval=5
+
+[brightness]
+command=echo `cat /sys/class/backlight/amdgpu_bl0/brightness` ☀
+interval=5
+
+[gamma]
+command=echo `xrandr --verbose | awk '/Brightness/ { print $2; exit }'` ◐
+interval=10
+
+[space]
+command=df -h /dev/nvme0n1p2 | grep / | awk '{print $4}'
+interval=10
+
+[battery]
+command=echo `cat /sys/class/power_supply/BAT1/capacity`%
+interval=5
+
+[time]
+command=date
+interval=5

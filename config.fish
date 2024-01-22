@@ -13,4 +13,7 @@ end
 
 set -U fish_key_bindings fish_default_key_bindings
 
-export PATH="$PATH:/home/taytek/.nvm/versions/node/v18.10.0/bin/"
+export PATH="$PATH:/home/taytek/.local/share/nvm/v18.10.0/bin:/home/taytek/CEdev/bin:/sbin"
+
+bind '[1;2D' backward-word
+bind '[1;2C' forward-word
